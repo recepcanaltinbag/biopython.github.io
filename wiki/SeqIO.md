@@ -127,7 +127,7 @@ or using a handle:
 ``` python
 from Bio import SeqIO
 
-with open("example.fasta", "rU") as handle:
+with open("example.fasta") as handle:
     for record in SeqIO.parse(handle, "fasta"):
         print(record.id)
 ```
@@ -135,7 +135,10 @@ with open("example.fasta", "rU") as handle:
 In the above example, we opened the file using the built-in python
 function `open`. The argument `'rU'` means open for **r**eading using
 **u**niversal readline mode - this means you don't have to worry if the
-file uses Unix, Mac or DOS/Windows style newline characters. The `with`-
+file uses Unix, Mac or DOS/Windows style newline characters. If you use
+Python 3.4+, you do not need to worry about it. 
+
+The `with`-
 statement makes sure that the file is properly closed after reading it.
 That should all happen automatically if you just use the filename instead.
 
@@ -154,7 +157,7 @@ which contains seven sequences, the only difference is you specify
 ``` python
 from Bio import SeqIO
 
-with open("opuntia.aln", "rU") as handle:
+with open("opuntia.aln") as handle:
     for record in SeqIO.parse(handle, "clustal"):
         print(record.id)
 ```
@@ -278,7 +281,7 @@ function:
 ``` python
 from Bio import SeqIO
 
-with open("cor6_6.gb", "rU") as input_handle:
+with open("cor6_6.gb") as input_handle:
     for record in SeqIO.parse(input_handle, "genbank"):
         print(record)
 ```
@@ -290,7 +293,7 @@ function, to turn this GenBank file into a Fasta file:
 ``` python
 from Bio import SeqIO
 
-with open("cor6_6.gb", "rU") as input_handle, open(
+with open("cor6_6.gb") as input_handle, open(
     "cor6_6.fasta", "w"
 ) as output_handle:
     sequences = SeqIO.parse(input_handle, "genbank")
